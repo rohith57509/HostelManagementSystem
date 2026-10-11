@@ -80,6 +80,51 @@ const Icons = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
     </svg>
   ),
+  CreditCard: () => (
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+    </svg>
+  ),
+  Receipt: () => (
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
+    </svg>
+  ),
+  Qrcode: () => (
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+    </svg>
+  ),
+  Shield: () => (
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+    </svg>
+  ),
+  Clock: () => (
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  ),
+  Copy: () => (
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+    </svg>
+  ),
+  Smartphone: () => (
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+    </svg>
+  ),
+  Lock: () => (
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+    </svg>
+  ),
+  ExternalLink: () => (
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+  ),
 };
 
 const getUser = () => {
@@ -120,6 +165,7 @@ function Layout({ children }) {
   const navItems = [
     { label: 'Dashboard', path: '/dashboard', icon: <Icons.Dashboard /> },
     { label: 'Rooms', path: '/rooms', icon: <Icons.Bed /> },
+    { label: 'Hostel Fees', path: '/payments', icon: <Icons.CreditCard /> },
     { label: 'Complaints', path: '/complaints', icon: <Icons.Alert /> },
     { label: 'Leave Requests', path: '/leaves', icon: <Icons.Calendar /> },
     { label: 'Notices', path: '/notices', icon: <Icons.Megaphone /> },
@@ -769,7 +815,7 @@ function Login() {
 // --- DASHBOARD ---
 function Dashboard() {
   const u = getUser();
-  const [stats, setStats] = useState({ rooms: 0, notices: 0, complaints: 0, leaves: 0 });
+  const [stats, setStats] = useState({ rooms: 0, notices: 0, complaints: 0, leaves: 0, fees: 0 });
 
   useEffect(() => {
     api.get('/rooms').then((r) => setStats((s) => ({ ...s, rooms: r.data?.length || 0 }))).catch(() => {});
@@ -777,9 +823,21 @@ function Dashboard() {
     if (u?.role === 'STUDENT' && u?.id) {
       api.get(`/complaints/student/${u.id}`).then((r) => setStats((s) => ({ ...s, complaints: r.data?.length || 0 }))).catch(() => {});
       api.get(`/leaves/student/${u.id}`).then((r) => setStats((s) => ({ ...s, leaves: r.data?.length || 0 }))).catch(() => {});
+      api.get(`/payments/student/${u.id}`).then((r) => {
+        const pending = (r.data || [])
+          .filter((p) => p.status !== 'PAID')
+          .reduce((sum, p) => sum + (p.amount || 0), 0);
+        setStats((s) => ({ ...s, fees: pending }));
+      }).catch(() => {});
     } else {
       api.get('/complaints').then((r) => setStats((s) => ({ ...s, complaints: r.data?.length || 0 }))).catch(() => {});
       api.get('/leaves').then((r) => setStats((s) => ({ ...s, leaves: r.data?.length || 0 }))).catch(() => {});
+      api.get('/payments').then((r) => {
+        const collected = (r.data || [])
+          .filter((p) => p.status === 'PAID')
+          .reduce((sum, p) => sum + (p.amount || 0), 0);
+        setStats((s) => ({ ...s, fees: collected }));
+      }).catch(() => {});
     }
   }, [u?.id, u?.role]);
 
@@ -790,7 +848,7 @@ function Dashboard() {
         <h2>Welcome back, {u?.name}!</h2>
         <p>
           Real-time hostel management dashboard. Track room allocations, student complaints,
-          leave permissions, and official announcements with full role-based security.
+          leave permissions, fee collections, and official announcements with full role-based security.
         </p>
       </div>
 
@@ -843,6 +901,23 @@ function Dashboard() {
           </div>
           <div className="stat-icon green">
             <Icons.Calendar />
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-info">
+            <div className="stat-label">
+              {u?.role === 'STUDENT' ? 'Pending Dues' : 'Fees Collected'}
+            </div>
+            <div className="stat-value" style={{ color: u?.role === 'STUDENT' && stats.fees > 0 ? '#dc2626' : '#059669' }}>
+              ₹{Number(stats.fees).toLocaleString('en-IN')}
+            </div>
+            <div className="stat-sub">
+              {u?.role === 'STUDENT' ? 'Payable via UPI / Card' : 'Total verified dues'}
+            </div>
+          </div>
+          <div className={`stat-icon ${u?.role === 'STUDENT' && stats.fees > 0 ? 'rose' : 'green'}`}>
+            <Icons.CreditCard />
           </div>
         </div>
       </div>
@@ -1542,6 +1617,1292 @@ function Users() {
   );
 }
 
+// --- INDIAN BANKING & UPI PRESETS ---
+const POPULAR_BANKS = [
+  { id: 'sbi', name: 'State Bank of India', short: 'SBI', code: 'SBI', color: '#0b4d8c', bg: '#f0f9ff', badge: 'Official PSB' },
+  { id: 'hdfc', name: 'HDFC Bank', short: 'HDFC', code: 'HDFC', color: '#004c8f', bg: '#eff6ff', badge: 'Instant 24x7' },
+  { id: 'icici', name: 'ICICI Bank', short: 'ICICI', code: 'ICICI', color: '#b72025', bg: '#fef2f2', badge: 'iMobile' },
+  { id: 'axis', name: 'Axis Bank', short: 'Axis', code: 'AXIS', color: '#97144d', bg: '#fdf2f8', badge: 'Retail Net' },
+  { id: 'kotak', name: 'Kotak Mahindra', short: 'Kotak', code: 'KOTAK', color: '#dc2626', bg: '#fef2f2', badge: '811 Portal' },
+  { id: 'pnb', name: 'Punjab National Bank', short: 'PNB', code: 'PNB', color: '#a20032', bg: '#fff1f2', badge: 'PNB One' },
+];
+
+const OTHER_BANKS = [
+  'Bank of Baroda',
+  'Canara Bank',
+  'Union Bank of India',
+  'Indian Bank',
+  'IndusInd Bank',
+  'Yes Bank',
+  'IDFC FIRST Bank',
+  'Federal Bank',
+  'Central Bank of India',
+  'Bank of India',
+  'Indian Overseas Bank',
+  'UCO Bank',
+  'RBL Bank',
+  'South Indian Bank',
+  'Karur Vysya Bank',
+  'Karnataka Bank',
+  'Standard Chartered Bank',
+];
+
+const UPI_APPS = [
+  { id: 'gpay', name: 'Google Pay', handle: '@okhdfcbank', color: '#4285F4', tag: 'Fastest' },
+  { id: 'phonepe', name: 'PhonePe', handle: '@ybl', color: '#5f259f', tag: 'Instant' },
+  { id: 'paytm', name: 'Paytm UPI', handle: '@paytm', color: '#00b9f5', tag: 'Direct' },
+  { id: 'bhim', name: 'BHIM UPI', handle: '@upi', color: '#00875a', tag: 'NPCI' },
+  { id: 'cred', name: 'CRED UPI', handle: '@cred', color: '#1e293b', tag: 'Rewards' },
+];
+
+// Realistic SVG QR Code Component for UPI
+function UpiQrSvg({ size = 160 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="160" height="160" rx="10" fill="#ffffff" />
+      {/* Top Left Finder */}
+      <rect x="12" y="12" width="38" height="38" rx="6" fill="#0f172a" />
+      <rect x="18" y="18" width="26" height="26" rx="4" fill="#ffffff" />
+      <rect x="23" y="23" width="16" height="16" rx="2" fill="#0f172a" />
+      {/* Top Right Finder */}
+      <rect x="110" y="12" width="38" height="38" rx="6" fill="#0f172a" />
+      <rect x="116" y="18" width="26" height="26" rx="4" fill="#ffffff" />
+      <rect x="121" y="23" width="16" height="16" rx="2" fill="#0f172a" />
+      {/* Bottom Left Finder */}
+      <rect x="12" y="110" width="38" height="38" rx="6" fill="#0f172a" />
+      <rect x="18" y="116" width="26" height="26" rx="4" fill="#ffffff" />
+      <rect x="23" y="121" width="16" height="16" rx="2" fill="#0f172a" />
+      {/* Data Modules & Pattern */}
+      <rect x="58" y="16" width="6" height="6" fill="#0f172a" />
+      <rect x="68" y="16" width="6" height="6" fill="#0f172a" />
+      <rect x="88" y="16" width="6" height="6" fill="#0f172a" />
+      <rect x="58" y="28" width="16" height="6" fill="#0f172a" />
+      <rect x="84" y="28" width="8" height="6" fill="#0f172a" />
+      <rect x="58" y="38" width="8" height="8" fill="#0f172a" />
+      <rect x="74" y="38" width="18" height="8" fill="#0f172a" />
+      <rect x="16" y="58" width="8" height="8" fill="#0f172a" />
+      <rect x="30" y="58" width="18" height="8" fill="#0f172a" />
+      <rect x="112" y="58" width="14" height="6" fill="#0f172a" />
+      <rect x="134" y="58" width="14" height="6" fill="#0f172a" />
+      <rect x="16" y="74" width="28" height="6" fill="#0f172a" />
+      <rect x="112" y="72" width="8" height="18" fill="#0f172a" />
+      <rect x="128" y="72" width="20" height="8" fill="#0f172a" />
+      <rect x="16" y="88" width="8" height="14" fill="#0f172a" />
+      <rect x="32" y="88" width="16" height="6" fill="#0f172a" />
+      <rect x="124" y="88" width="16" height="14" fill="#0f172a" />
+      <rect x="58" y="112" width="8" height="18" fill="#0f172a" />
+      <rect x="74" y="112" width="16" height="8" fill="#0f172a" />
+      <rect x="98" y="112" width="10" height="8" fill="#0f172a" />
+      <rect x="118" y="112" width="8" height="8" fill="#0f172a" />
+      <rect x="134" y="112" width="14" height="18" fill="#0f172a" />
+      <rect x="74" y="128" width="8" height="18" fill="#0f172a" />
+      <rect x="90" y="128" width="18" height="8" fill="#0f172a" />
+      <rect x="118" y="128" width="8" height="18" fill="#0f172a" />
+      <rect x="58" y="138" width="12" height="8" fill="#0f172a" />
+      <rect x="98" y="142" width="10" height="6" fill="#0f172a" />
+      {/* Central UPI Emblem */}
+      <circle cx="80" cy="80" r="18" fill="#4f46e5" />
+      <text x="80" y="84" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="900" fontFamily="sans-serif">
+        UPI
+      </text>
+    </svg>
+  );
+}
+
+// --- HOSTEL FEES & PAYMENTS ---
+function Payments() {
+  const u = getUser();
+  const isAdmin = u?.role === 'ADMIN';
+  const isStudent = u?.role === 'STUDENT';
+
+  const [payments, setPayments] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [activeTab, setActiveTab] = useState(isStudent ? 'BILLS' : 'ALL');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Modals
+  const [payModal, setPayModal] = useState(null);
+  const [receiptModal, setReceiptModal] = useState(null);
+  const [billModal, setBillModal] = useState(false);
+
+  // Simulated Net Banking Gateway Modal
+  const [bankGatewayModal, setBankGatewayModal] = useState(null);
+
+  // Payment Form States
+  const [payMethod, setPayMethod] = useState('UPI'); // 'UPI' | 'NET_BANKING' | 'CARD'
+  
+  // UPI Specific States
+  const [activeUpiApp, setActiveUpiApp] = useState(UPI_APPS[0]);
+  const [upiId, setUpiId] = useState('student@okhdfcbank');
+  const [vpaVerified, setVpaVerified] = useState(false);
+  const [vpaChecking, setVpaChecking] = useState(false);
+  const [copiedUpi, setCopiedUpi] = useState(false);
+  const [upiTimer, setUpiTimer] = useState(300);
+
+  // Net Banking States
+  const [selectedBank, setSelectedBank] = useState(POPULAR_BANKS[0]);
+  const [otherBank, setOtherBank] = useState('');
+
+  // Card States
+  const [cardData, setCardData] = useState({
+    number: '4532 8920 1192 4890',
+    name: u?.name || 'Demo Student',
+    exp: '08/28',
+    cvv: '382'
+  });
+
+  const [paying, setPaying] = useState(false);
+
+  // Admin Bill Generation State
+  const [billForm, setBillForm] = useState({
+    studentId: '',
+    billTitle: 'Hostel Room Rent - Nov 2026',
+    billType: 'ROOM_RENT',
+    amount: 4500,
+    dueDate: new Date(Date.now() + 15 * 86400000).toISOString().split('T')[0]
+  });
+
+  // Load Bills and Users
+  const loadData = () => {
+    if (isStudent && u?.id) {
+      api.get(`/payments/student/${u.id}`).then((res) => setPayments(res.data || [])).catch(() => {});
+    } else {
+      api.get('/payments').then((res) => setPayments(res.data || [])).catch(() => {});
+    }
+    if (isAdmin) {
+      api.get('/admin/users').then((res) => {
+        const studentUsers = (res.data || []).filter((usr) => usr.role === 'STUDENT');
+        setStudents(studentUsers);
+        if (studentUsers.length > 0 && !billForm.studentId) {
+          setBillForm((prev) => ({ ...prev, studentId: studentUsers[0].id }));
+        }
+      }).catch(() => {});
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, [u?.id, isStudent, isAdmin]);
+
+  // UPI Countdown Timer
+  useEffect(() => {
+    let interval = null;
+    if (payModal && payMethod === 'UPI') {
+      interval = setInterval(() => {
+        setUpiTimer((prev) => (prev > 1 ? prev - 1 : 300));
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [payModal, payMethod]);
+
+  const formatTimer = (secs) => {
+    const m = Math.floor(secs / 60);
+    const s = secs % 60;
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  };
+
+  // UPI App Selection
+  const handleSelectUpiApp = (app) => {
+    setActiveUpiApp(app);
+    const prefix = upiId.includes('@') ? upiId.split('@')[0] : (u?.name?.toLowerCase().replace(/\s+/g, '') || 'student');
+    setUpiId(`${prefix}${app.handle}`);
+    setVpaVerified(false);
+  };
+
+  // UPI VPA Verification Simulation
+  const handleVerifyVpa = () => {
+    if (!upiId.includes('@')) {
+      alert('Please enter a valid UPI address (e.g. name@okhdfcbank)');
+      return;
+    }
+    setVpaChecking(true);
+    setTimeout(() => {
+      setVpaChecking(false);
+      setVpaVerified(true);
+    }, 700);
+  };
+
+  // Copy UPI string
+  const handleCopyUpi = () => {
+    navigator.clipboard.writeText('sentinelhostel@sbi');
+    setCopiedUpi(true);
+    setTimeout(() => setCopiedUpi(false), 2500);
+  };
+
+  // Direct Pay Handler (For Card or UPI Manual confirmation)
+  const handlePay = async (customMethod = null, customTxn = null) => {
+    if (!payModal) return;
+    setPaying(true);
+    try {
+      const methodToUse = customMethod || (
+        payMethod === 'UPI' ? `UPI (${activeUpiApp.name})` :
+        payMethod === 'CARD' ? 'DEBIT / CREDIT CARD' :
+        `NET_BANKING (${selectedBank.name})`
+      );
+
+      const res = await api.post(`/payments/${payModal.id}/pay`, {
+        paymentMethod: methodToUse,
+        transactionId: customTxn || undefined,
+        upiId: payMethod === 'UPI' ? upiId : null,
+      });
+
+      triggerToast(`🎉 Payment of ₹${payModal.amount.toLocaleString('en-IN')} completed successfully!`);
+      const updated = res.data;
+      setPayModal(null);
+      setBankGatewayModal(null);
+      setReceiptModal(updated);
+      loadData();
+    } catch (err) {
+      alert(err.response?.data?.message || 'Payment processing failed.');
+    } finally {
+      setPaying(false);
+    }
+  };
+
+  // Launch Simulated Net Banking Gateway
+  const handleProceedToNetBanking = () => {
+    const bankToUse = otherBank ? { name: otherBank, short: otherBank.split(' ')[0], code: 'BNK', color: '#1e3a8a' } : selectedBank;
+    const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    setBankGatewayModal({
+      bank: bankToUse,
+      bill: payModal,
+      step: 1, // 1: Login, 2: OTP, 3: Clearing House
+      userId: `stu_${bankToUse.code.toLowerCase()}_${Math.floor(1000 + Math.random() * 9000)}`,
+      password: '••••••••••••',
+      otp: '',
+      generatedOtp,
+      processingText: 'Connecting to Reserve Bank of India (RBI) Secure Gateway...',
+    });
+  };
+
+  // Step 1: Submit Bank Login
+  const handleBankLoginSubmit = (e) => {
+    e.preventDefault();
+    if (!bankGatewayModal) return;
+    setBankGatewayModal({
+      ...bankGatewayModal,
+      step: 2,
+    });
+  };
+
+  // Step 2: Submit Bank OTP and complete payment
+  const handleBankOtpSubmit = (e) => {
+    e.preventDefault();
+    if (!bankGatewayModal) return;
+    if (!bankGatewayModal.otp || bankGatewayModal.otp.trim().length < 4) {
+      alert('Please enter the 6-digit OTP received via SMS.');
+      return;
+    }
+
+    setBankGatewayModal({
+      ...bankGatewayModal,
+      step: 3,
+      processingText: 'Authorizing with NPCI & National Automated Clearing House...',
+    });
+
+    setTimeout(() => {
+      setBankGatewayModal((prev) => prev ? { ...prev, processingText: 'Transaction Confirmed. Updating Hostel Ledger...' } : null);
+      setTimeout(() => {
+        const txnId = `${bankGatewayModal.bank.code}-NB-${Math.floor(10000000 + Math.random() * 90000000)}`;
+        handlePay(`NET_BANKING (${bankGatewayModal.bank.name})`, txnId);
+      }, 900);
+    }, 1200);
+  };
+
+  // Handle Admin Bill Generation
+  const handleGenerateBill = async (e) => {
+    e.preventDefault();
+    try {
+      await api.post('/payments/generate', {
+        studentId: Number(billForm.studentId),
+        billTitle: billForm.billTitle,
+        billType: billForm.billType,
+        amount: Number(billForm.amount),
+        dueDate: billForm.dueDate,
+      });
+      triggerToast('🧾 New hostel bill invoice issued successfully!');
+      setBillModal(false);
+      loadData();
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to issue invoice.');
+    }
+  };
+
+  // Financial Metrics
+  const totalCollected = payments
+    .filter((p) => p.status === 'PAID')
+    .reduce((sum, p) => sum + (p.amount || 0), 0);
+
+  const totalPending = payments
+    .filter((p) => p.status !== 'PAID')
+    .reduce((sum, p) => sum + (p.amount || 0), 0);
+
+  const totalOverdue = payments
+    .filter((p) => p.status === 'OVERDUE')
+    .reduce((sum, p) => sum + (p.amount || 0), 0);
+
+  // Filtered List
+  const filteredPayments = payments.filter((p) => {
+    const student = p.student;
+    const matchesSearch =
+      (p.billTitle && p.billTitle.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (student?.name && student.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (p.transactionId && p.transactionId.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    if (!matchesSearch) return false;
+
+    if (isStudent) {
+      if (activeTab === 'BILLS') return p.status !== 'PAID';
+      if (activeTab === 'HISTORY') return p.status === 'PAID';
+      return true;
+    } else {
+      if (activeTab === 'PAID') return p.status === 'PAID';
+      if (activeTab === 'PENDING') return p.status === 'PENDING';
+      if (activeTab === 'OVERDUE') return p.status === 'OVERDUE';
+      return true;
+    }
+  });
+
+  const getStatusBadge = (status) => {
+    if (status === 'PAID') return 'badge-green';
+    if (status === 'OVERDUE') return 'badge-red';
+    return 'badge-yellow';
+  };
+
+  const getTypeBadge = (type) => {
+    switch (type) {
+      case 'ROOM_RENT': return 'badge-blue';
+      case 'MESS': return 'badge-yellow';
+      case 'SECURITY_DEPOSIT': return 'badge-purple';
+      default: return 'badge-green';
+    }
+  };
+
+  return (
+    <>
+      {/* HERO BANNER */}
+      <div className="hero" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%)' }}>
+        <span className="hero-tag" style={{ background: 'rgba(216, 180, 254, 0.2)', color: '#f3e8ff' }}>
+          💳 {isStudent ? 'STUDENT BILLING & FEES' : 'ADMINISTRATIVE TREASURY'}
+        </span>
+        <h2>Hostel Dues &amp; Payment Gateway</h2>
+        <p>
+          {isStudent
+            ? 'Pay room rent, mess charges, and maintenance fees online via UPI Apps (GPay, PhonePe, Paytm), Net Banking (SBI, HDFC, ICICI), or Cards with official digital receipts.'
+            : 'Track real-time hostel revenue, inspect student payment receipts, monitor overdue accounts, and issue new billing invoices.'}
+        </p>
+      </div>
+
+      {/* STAT CARDS */}
+      <div className="grid-stats">
+        <div className="stat-card">
+          <div className="stat-info">
+            <div className="stat-label">{isStudent ? 'Outstanding Dues' : 'Total Collected'}</div>
+            <div className="stat-value" style={{ color: isStudent && totalPending > 0 ? '#dc2626' : '#059669' }}>
+              ₹{Number(isStudent ? totalPending : totalCollected).toLocaleString('en-IN')}
+            </div>
+            <div className="stat-sub">{isStudent ? 'Pending payment' : 'Across all hostel wings'}</div>
+          </div>
+          <div className={`stat-icon ${isStudent && totalPending > 0 ? 'rose' : 'green'}`}>
+            <Icons.CreditCard />
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-info">
+            <div className="stat-label">{isStudent ? 'Total Paid' : 'Pending Receivables'}</div>
+            <div className="stat-value" style={{ color: !isStudent && totalPending > 0 ? '#d97706' : '#059669' }}>
+              ₹{Number(isStudent ? totalCollected : totalPending).toLocaleString('en-IN')}
+            </div>
+            <div className="stat-sub">{isStudent ? 'Lifetime cleared' : 'Awaiting student payment'}</div>
+          </div>
+          <div className="stat-icon amber">
+            <Icons.Calendar />
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-info">
+            <div className="stat-label">{isStudent ? 'Invoices Count' : 'Overdue Dues'}</div>
+            <div className="stat-value" style={{ color: !isStudent && totalOverdue > 0 ? '#dc2626' : '#0f172a' }}>
+              {isStudent ? payments.length : `₹${Number(totalOverdue).toLocaleString('en-IN')}`}
+            </div>
+            <div className="stat-sub">{isStudent ? 'Total bills generated' : 'Past due date accounts'}</div>
+          </div>
+          <div className="stat-icon purple">
+            <Icons.Receipt />
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-info">
+            <div className="stat-label">Payment Security</div>
+            <div className="stat-value" style={{ fontSize: '20px', color: '#4f46e5' }}>RBI &amp; NPCI</div>
+            <div className="stat-sub">256-Bit SSL Encrypted</div>
+          </div>
+          <div className="stat-icon blue">
+            <Icons.Shield />
+          </div>
+        </div>
+      </div>
+
+      {/* MAIN BILLS & ROSTER CARD */}
+      <div className="card">
+        <div className="card-header">
+          <h2>
+            <Icons.CreditCard />
+            {isStudent ? 'My Hostel Invoices & Dues' : 'Student Billing Ledger'}
+          </h2>
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+            <input
+              style={{ width: '220px', padding: '8px 12px', fontSize: '13px' }}
+              placeholder="Search bill or student..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {isAdmin && (
+              <button className="btn btn-sm btn-primary" onClick={() => setBillModal(true)}>
+                <Icons.Plus />
+                Issue New Bill
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* TABS */}
+        <div className="tab-pills">
+          {isStudent ? (
+            <>
+              <button
+                className={`tab-pill-btn ${activeTab === 'BILLS' ? 'active' : ''}`}
+                onClick={() => setActiveTab('BILLS')}
+              >
+                Pending Bills ({payments.filter((p) => p.status !== 'PAID').length})
+              </button>
+              <button
+                className={`tab-pill-btn ${activeTab === 'HISTORY' ? 'active' : ''}`}
+                onClick={() => setActiveTab('HISTORY')}
+              >
+                Payment Receipts ({payments.filter((p) => p.status === 'PAID').length})
+              </button>
+              <button
+                className={`tab-pill-btn ${activeTab === 'ALL' ? 'active' : ''}`}
+                onClick={() => setActiveTab('ALL')}
+              >
+                All Records
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className={`tab-pill-btn ${activeTab === 'ALL' ? 'active' : ''}`}
+                onClick={() => setActiveTab('ALL')}
+              >
+                All Invoices ({payments.length})
+              </button>
+              <button
+                className={`tab-pill-btn ${activeTab === 'PENDING' ? 'active' : ''}`}
+                onClick={() => setActiveTab('PENDING')}
+              >
+                Pending ({payments.filter((p) => p.status === 'PENDING').length})
+              </button>
+              <button
+                className={`tab-pill-btn ${activeTab === 'PAID' ? 'active' : ''}`}
+                onClick={() => setActiveTab('PAID')}
+              >
+                Paid ({payments.filter((p) => p.status === 'PAID').length})
+              </button>
+              <button
+                className={`tab-pill-btn ${activeTab === 'OVERDUE' ? 'active' : ''}`}
+                onClick={() => setActiveTab('OVERDUE')}
+              >
+                Overdue ({payments.filter((p) => p.status === 'OVERDUE').length})
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* TABLE */}
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                {!isStudent && <th>Student</th>}
+                <th>Bill Title</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Payment Mode</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredPayments.length === 0 ? (
+                <tr>
+                  <td colSpan={!isStudent ? 9 : 8} style={{ textAlign: 'center', padding: '36px' }}>
+                    No bills or payment records found.
+                  </td>
+                </tr>
+              ) : (
+                filteredPayments.map((p) => (
+                  <tr key={p.id}>
+                    <td><strong>#{p.id}</strong></td>
+                    {!isStudent && (
+                      <td>
+                        <strong>{p.student?.name || 'Student'}</strong>
+                        <div style={{ fontSize: '11px', color: '#64748b' }}>{p.student?.email}</div>
+                      </td>
+                    )}
+                    <td><strong>{p.billTitle}</strong></td>
+                    <td>
+                      <span className={`badge ${getTypeBadge(p.billType)}`}>
+                        {p.billType?.replace('_', ' ') || 'FEES'}
+                      </span>
+                    </td>
+                    <td>
+                      <strong style={{ fontSize: '15px', color: p.status === 'PAID' ? '#059669' : '#0f172a' }}>
+                        ₹{Number(p.amount).toLocaleString('en-IN')}
+                      </strong>
+                    </td>
+                    <td>{p.dueDate || 'End of Month'}</td>
+                    <td>
+                      <span className={`badge ${getStatusBadge(p.status)}`}>
+                        <span className="badge-dot"></span>
+                        {p.status}
+                      </span>
+                    </td>
+                    <td>
+                      {p.paymentMethod ? (
+                        <span>
+                          <strong>{p.paymentMethod}</strong>
+                          <div style={{ fontSize: '10px', color: '#64748b', fontFamily: 'monospace' }}>
+                            {p.transactionId}
+                          </div>
+                        </span>
+                      ) : (
+                        <span style={{ color: '#94a3b8' }}>—</span>
+                      )}
+                    </td>
+                    <td>
+                      {p.status !== 'PAID' ? (
+                        isStudent ? (
+                          <button
+                            className="btn btn-sm btn-primary"
+                            onClick={() => {
+                              setPayModal(p);
+                              setUpiTimer(300);
+                              setVpaVerified(false);
+                            }}
+                          >
+                            <Icons.CreditCard />
+                            Pay ₹{p.amount}
+                          </button>
+                        ) : (
+                          <span style={{ fontSize: '12px', color: '#d97706', fontWeight: '600' }}>
+                            Pending
+                          </span>
+                        )
+                      ) : (
+                        <button
+                          className="btn btn-sm btn-outline"
+                          onClick={() => setReceiptModal(p)}
+                        >
+                          <Icons.Receipt />
+                          Receipt
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* =========================================================================
+          CHECKOUT & PAYMENT MODAL (STUDENT GATEWAY)
+          ========================================================================= */}
+      {payModal && (
+        <div className="modal-backdrop">
+          <div className="modal-container" style={{ maxWidth: '580px' }}>
+            <div className="modal-header">
+              <h3>
+                <Icons.CreditCard />
+                Hostel Fee Checkout Gateway
+              </h3>
+              <button className="modal-close-btn" onClick={() => setPayModal(null)}>
+                <Icons.X />
+              </button>
+            </div>
+
+            {/* Bill Summary Banner */}
+            <div className="bill-summary-banner">
+              <div>
+                <div className="title">{payModal.billTitle}</div>
+                <div className="due">
+                  Due: {payModal.dueDate || 'Immediate'} · Ref #{payModal.id} · Student: {u?.name}
+                </div>
+              </div>
+              <div>
+                <div className="amount">₹{Number(payModal.amount).toLocaleString('en-IN')}</div>
+                <div style={{ fontSize: '11px', color: '#c7d2fe', textAlign: 'right' }}>Convenience Fee: ₹0</div>
+              </div>
+            </div>
+
+            {/* Mode Tabs */}
+            <div className="pay-mode-tabs">
+              <button
+                type="button"
+                className={`pay-tab-btn ${payMethod === 'UPI' ? 'active' : ''}`}
+                onClick={() => setPayMethod('UPI')}
+              >
+                <Icons.Qrcode />
+                <span>UPI / QR</span>
+                <span className="pay-tab-badge">Instant</span>
+              </button>
+              <button
+                type="button"
+                className={`pay-tab-btn ${payMethod === 'NET_BANKING' ? 'active' : ''}`}
+                onClick={() => setPayMethod('NET_BANKING')}
+              >
+                <Icons.Building />
+                <span>Net Banking</span>
+                <span className="pay-tab-badge">All Banks</span>
+              </button>
+              <button
+                type="button"
+                className={`pay-tab-btn ${payMethod === 'CARD' ? 'active' : ''}`}
+                onClick={() => setPayMethod('CARD')}
+              >
+                <Icons.CreditCard />
+                <span>Debit / Card</span>
+                <span className="pay-tab-badge">Visa/Master</span>
+              </button>
+            </div>
+
+            {/* ===================================================================
+                MODE 1: UPI & QR CODE GATEWAY
+                =================================================================== */}
+            {payMethod === 'UPI' && (
+              <div className="upi-payment-panel">
+                {/* Timer Badge */}
+                <div className="upi-timer-badge">
+                  <Icons.Clock />
+                  <span>Session valid for <strong>{formatTimer(upiTimer)}</strong></span>
+                </div>
+
+                {/* QR Scanner Mock */}
+                <div className="upi-qr-card">
+                  <div className="upi-qr-frame">
+                    <UpiQrSvg size={148} />
+                    <div className="upi-scan-laser"></div>
+                  </div>
+                  <div className="upi-qr-details">
+                    <div className="upi-merchant-name">Sentinel Hostel Administration</div>
+                    <div className="upi-vpa-copy-row">
+                      <code>sentinelhostel@sbi</code>
+                      <button type="button" className="copy-btn" onClick={handleCopyUpi}>
+                        <Icons.Copy />
+                        {copiedUpi ? 'Copied!' : 'Copy'}
+                      </button>
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
+                      Scan with Google Pay, PhonePe, Paytm, BHIM, or any UPI 2.0 app
+                    </div>
+                  </div>
+                </div>
+
+                {/* UPI Quick Apps Selector */}
+                <div style={{ marginTop: '14px' }}>
+                  <label style={{ fontSize: '12px', fontWeight: '700', color: '#334155', display: 'block', marginBottom: '6px' }}>
+                    Select Your Preferred UPI App:
+                  </label>
+                  <div className="upi-app-selector">
+                    {UPI_APPS.map((app) => (
+                      <button
+                        key={app.id}
+                        type="button"
+                        className={`upi-app-pill ${activeUpiApp.id === app.id ? 'active' : ''}`}
+                        onClick={() => handleSelectUpiApp(app)}
+                      >
+                        <span className="app-dot" style={{ backgroundColor: app.color }}></span>
+                        {app.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* VPA Input & Verify */}
+                <div className="form-group" style={{ marginTop: '14px' }}>
+                  <label>Enter UPI ID / VPA</label>
+                  <div className="vpa-input-wrap">
+                    <input
+                      placeholder="e.g. rohit@okhdfcbank"
+                      value={upiId}
+                      onChange={(e) => {
+                        setUpiId(e.target.value);
+                        setVpaVerified(false);
+                      }}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="btn-verify-vpa"
+                      onClick={handleVerifyVpa}
+                      disabled={vpaChecking || vpaVerified}
+                    >
+                      {vpaChecking ? 'Checking...' : vpaVerified ? '✓ Verified' : 'Verify VPA'}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Verified Badge */}
+                {vpaVerified && (
+                  <div className="vpa-verified-callout">
+                    <Icons.Check />
+                    <span>
+                      Verified UPI Account: <strong>{u?.name || 'Rohit Sharma'}</strong> · State Bank of India
+                    </span>
+                  </div>
+                )}
+
+                {/* Actions */}
+                <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
+                  <button
+                    className="btn btn-primary"
+                    style={{ flex: 1, padding: '12px' }}
+                    onClick={() => handlePay(`UPI (${activeUpiApp.name})`)}
+                    disabled={paying}
+                  >
+                    <Icons.Check />
+                    {paying ? 'Authorizing via NPCI...' : `Pay ₹${Number(payModal.amount).toLocaleString('en-IN')}`}
+                  </button>
+                  <button
+                    className="btn btn-outline"
+                    style={{ padding: '12px', fontSize: '12px' }}
+                    onClick={() => {
+                      triggerToast('📲 Mobile Push Notification sent! Approving on PhonePe/GPay...');
+                      setTimeout(() => {
+                        const fakeTxn = 'UPI-APP-' + Math.floor(10000000 + Math.random() * 90000000);
+                        handlePay(`UPI (${activeUpiApp.name} App Approval)`, fakeTxn);
+                      }, 1200);
+                    }}
+                    title="Simulate student tapping Approve on their smartphone"
+                  >
+                    <Icons.Smartphone />
+                    Simulate App Push
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ===================================================================
+                MODE 2: NET BANKING GATEWAY
+                =================================================================== */}
+            {payMethod === 'NET_BANKING' && (
+              <div className="netbanking-panel">
+                <div style={{ fontSize: '13px', fontWeight: '700', color: '#1e293b', marginBottom: '8px' }}>
+                  Popular Scheduled Banks (Direct 256-bit Integration)
+                </div>
+
+                {/* Popular Banks Grid */}
+                <div className="bank-grid">
+                  {POPULAR_BANKS.map((b) => (
+                    <div
+                      key={b.id}
+                      className={`bank-card ${selectedBank.id === b.id && !otherBank ? 'active' : ''}`}
+                      onClick={() => {
+                        setSelectedBank(b);
+                        setOtherBank('');
+                      }}
+                    >
+                      <div className="bank-badge-code" style={{ backgroundColor: b.color }}>
+                        {b.code}
+                      </div>
+                      <div className="bank-name">{b.name}</div>
+                      <div className="bank-tag">{b.badge}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Other Banks Dropdown */}
+                <div className="form-group" style={{ marginTop: '14px' }}>
+                  <label>Or Choose From All Indian Banks:</label>
+                  <select
+                    value={otherBank}
+                    onChange={(e) => {
+                      setOtherBank(e.target.value);
+                    }}
+                  >
+                    <option value="">-- Select other scheduled bank --</option>
+                    {OTHER_BANKS.map((ob) => (
+                      <option key={ob} value={ob}>
+                        {ob}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="bank-security-notice">
+                  <Icons.Lock />
+                  <span>
+                    You will be connected to the secure <strong>{otherBank || selectedBank.name}</strong> NetBanking login portal with two-factor SMS OTP authentication.
+                  </span>
+                </div>
+
+                <button
+                  className="btn btn-primary"
+                  style={{ width: '100%', marginTop: '16px', padding: '12px' }}
+                  onClick={handleProceedToNetBanking}
+                >
+                  <Icons.ExternalLink />
+                  Proceed to {otherBank || selectedBank.name} Portal →
+                </button>
+              </div>
+            )}
+
+            {/* ===================================================================
+                MODE 3: DEBIT & CREDIT CARD
+                =================================================================== */}
+            {payMethod === 'CARD' && (
+              <div>
+                <div className="mock-card">
+                  <div className="chip"></div>
+                  <div className="number">{cardData.number}</div>
+                  <div className="card-footer">
+                    <div>
+                      <div>CARDHOLDER</div>
+                      <div className="holder">{cardData.name}</div>
+                    </div>
+                    <div>
+                      <div>EXPIRES</div>
+                      <div className="holder">{cardData.exp}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <div className="form-group">
+                    <label>Card Number</label>
+                    <input
+                      value={cardData.number}
+                      onChange={(e) => setCardData({ ...cardData, number: e.target.value })}
+                      placeholder="16-digit card number"
+                      required
+                    />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                    <div className="form-group">
+                      <label>Expiry Date</label>
+                      <input
+                        value={cardData.exp}
+                        onChange={(e) => setCardData({ ...cardData, exp: e.target.value })}
+                        placeholder="MM/YY"
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>CVV / CVC</label>
+                      <input
+                        type="password"
+                        maxLength="3"
+                        value={cardData.cvv}
+                        onChange={(e) => setCardData({ ...cardData, cvv: e.target.value })}
+                        placeholder="•••"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  className="btn btn-primary"
+                  style={{ width: '100%', marginTop: '18px', padding: '12px' }}
+                  onClick={() => handlePay('DEBIT / CREDIT CARD')}
+                  disabled={paying}
+                >
+                  <Icons.Check />
+                  {paying ? 'Processing via 256-Bit SSL...' : `Pay ₹${Number(payModal.amount).toLocaleString('en-IN')}`}
+                </button>
+              </div>
+            )}
+
+            <div className="security-seal">
+              <Icons.Shield />
+              <span>PCI-DSS Level 1 · 256-Bit SSL · Reserve Bank of India &amp; NPCI Approved</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          SIMULATED BANK NETBANKING AUTHENTICATION MODAL (STATE BANK / HDFC / ICICI)
+          ========================================================================= */}
+      {bankGatewayModal && (
+        <div className="modal-backdrop">
+          <div className="modal-container bank-portal-container">
+            {/* Bank Branded Header */}
+            <div className="bank-portal-header" style={{ backgroundColor: bankGatewayModal.bank.color || '#0b4d8c' }}>
+              <div className="bank-portal-brand">
+                <span className="portal-code-chip">{bankGatewayModal.bank.code || 'BANK'}</span>
+                <div>
+                  <div className="portal-title">{bankGatewayModal.bank.name}</div>
+                  <div className="portal-sub">Retail Internet Banking Secure Gateway</div>
+                </div>
+              </div>
+              <div className="portal-security-badge">
+                <Icons.Lock />
+                <span>256-Bit SSL</span>
+              </div>
+            </div>
+
+            {/* Merchant Summary Bar */}
+            <div className="bank-portal-summary">
+              <div>
+                <span className="label">Merchant:</span>
+                <strong>Sentinel Hostel Administration</strong>
+              </div>
+              <div>
+                <span className="label">Payable:</span>
+                <strong className="amt">₹{Number(bankGatewayModal.bill?.amount).toLocaleString('en-IN')}</strong>
+              </div>
+            </div>
+
+            {/* STEP 1: USER LOGIN */}
+            {bankGatewayModal.step === 1 && (
+              <form onSubmit={handleBankLoginSubmit} className="bank-step-form">
+                <div style={{ textAlign: 'center', marginBottom: '14px' }}>
+                  <div style={{ fontSize: '15px', fontWeight: '700', color: '#1e293b' }}>
+                    Internet Banking Authentication
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
+                    Enter your {bankGatewayModal.bank.name} NetBanking Customer ID to authorize payment
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>Customer ID / Username</label>
+                  <input
+                    value={bankGatewayModal.userId}
+                    onChange={(e) => setBankGatewayModal({ ...bankGatewayModal, userId: e.target.value })}
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>IPIN / Login Password</label>
+                  <input
+                    type="password"
+                    value={bankGatewayModal.password}
+                    onChange={(e) => setBankGatewayModal({ ...bankGatewayModal, password: e.target.value })}
+                    required
+                  />
+                </div>
+
+                <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+                  <button type="submit" className="btn btn-primary" style={{ flex: 1, padding: '11px' }}>
+                    Log In to NetBanking →
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline"
+                    onClick={() => {
+                      setBankGatewayModal({
+                        ...bankGatewayModal,
+                        userId: `student_${u?.name?.toLowerCase().replace(/\s+/g, '_') || 'demo'}`,
+                        password: 'HostelStudent@2026',
+                      });
+                      triggerToast('Prefilled Demo NetBanking Credentials');
+                    }}
+                  >
+                    Demo Fill
+                  </button>
+                </div>
+
+                <div style={{ textAlign: 'center', marginTop: '12px' }}>
+                  <button
+                    type="button"
+                    style={{ background: 'none', border: 'none', color: '#dc2626', fontSize: '12px', cursor: 'pointer' }}
+                    onClick={() => setBankGatewayModal(null)}
+                  >
+                    Cancel Transaction &amp; Return to Hostel Portal
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* STEP 2: TWO-FACTOR AUTHENTICATION / OTP */}
+            {bankGatewayModal.step === 2 && (
+              <form onSubmit={handleBankOtpSubmit} className="bank-step-form">
+                <div style={{ textAlign: 'center', marginBottom: '14px' }}>
+                  <div style={{ fontSize: '15px', fontWeight: '700', color: '#1e293b' }}>
+                    Two-Factor Authorization (SMS OTP)
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#64748b', marginTop: '4px' }}>
+                    An OTP for fee payment of ₹{Number(bankGatewayModal.bill?.amount).toLocaleString('en-IN')} has been dispatched to your mobile ending in <strong>•••• 8419</strong>.
+                  </div>
+                </div>
+
+                <div className="sms-otp-alert">
+                  <Icons.Smartphone />
+                  <div>
+                    <div style={{ fontSize: '11px', color: '#475569' }}>Simulated SMS Message:</div>
+                    <div style={{ fontSize: '13px', fontWeight: '700', color: '#0f172a' }}>
+                      Sentinel OTP: <strong>{bankGatewayModal.generatedOtp}</strong> is your code for bill #{bankGatewayModal.bill?.id}.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-group" style={{ marginTop: '14px' }}>
+                  <label>Enter 6-Digit One Time Password</label>
+                  <input
+                    type="text"
+                    maxLength="6"
+                    style={{ letterSpacing: '4px', textAlign: 'center', fontSize: '18px', fontWeight: '700' }}
+                    placeholder="•• •• ••"
+                    value={bankGatewayModal.otp}
+                    onChange={(e) => setBankGatewayModal({ ...bankGatewayModal, otp: e.target.value })}
+                    required
+                  />
+                </div>
+
+                <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+                  <button
+                    type="submit"
+                    className="btn btn-success"
+                    style={{ flex: 1, padding: '11px' }}
+                  >
+                    <Icons.Check />
+                    Authorize ₹{Number(bankGatewayModal.bill?.amount).toLocaleString('en-IN')}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline"
+                    onClick={() => {
+                      setBankGatewayModal({
+                        ...bankGatewayModal,
+                        otp: bankGatewayModal.generatedOtp,
+                      });
+                    }}
+                  >
+                    Auto-Fill OTP
+                  </button>
+                </div>
+
+                <div style={{ textAlign: 'center', marginTop: '12px' }}>
+                  <button
+                    type="button"
+                    style={{ background: 'none', border: 'none', color: '#64748b', fontSize: '12px', cursor: 'pointer' }}
+                    onClick={() => setBankGatewayModal(null)}
+                  >
+                    Abort Payment
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* STEP 3: CLEARING HOUSE TRANSITION */}
+            {bankGatewayModal.step === 3 && (
+              <div style={{ textAlign: 'center', padding: '30px 10px' }}>
+                <div className="portal-loading-spinner"></div>
+                <div style={{ fontSize: '16px', fontWeight: '700', color: '#1e293b', marginTop: '16px' }}>
+                  {bankGatewayModal.processingText}
+                </div>
+                <p style={{ fontSize: '12px', color: '#64748b', marginTop: '6px' }}>
+                  Please do not refresh or close this window. Your secure bank token is being validated.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          OFFICIAL INVOICE RECEIPT MODAL
+          ========================================================================= */}
+      {receiptModal && (
+        <div className="modal-backdrop">
+          <div className="modal-container" style={{ maxWidth: '620px' }}>
+            <div className="modal-header">
+              <h3>
+                <Icons.Receipt />
+                Official Hostel Treasury Payment Receipt
+              </h3>
+              <button className="modal-close-btn" onClick={() => setReceiptModal(null)}>
+                <Icons.X />
+              </button>
+            </div>
+
+            <div className="receipt-box" id="printable-receipt">
+              <div className="receipt-stamp">
+                <Icons.Check />
+                VERIFIED &amp; CLEARED
+              </div>
+              <div className="receipt-title">SENTINEL HOSTEL &amp; RESIDENCE ADMINISTRATION</div>
+              <div className="receipt-sub">Directorate of Student Housing · Treasury Division</div>
+
+              <div className="receipt-amount-row">
+                <span>Total Amount Cleared</span>
+                <strong>₹{Number(receiptModal.amount).toLocaleString('en-IN')}</strong>
+              </div>
+
+              <div className="receipt-grid">
+                <div>
+                  <div className="item-label">Student Name:</div>
+                  <div className="item-val">{receiptModal.student?.name}</div>
+                </div>
+                <div>
+                  <div className="item-label">Student Email / ID:</div>
+                  <div className="item-val">{receiptModal.student?.email}</div>
+                </div>
+                <div>
+                  <div className="item-label">Bill Category:</div>
+                  <div className="item-val">{receiptModal.billTitle}</div>
+                </div>
+                <div>
+                  <div className="item-label">Payment Mode:</div>
+                  <div className="item-val" style={{ color: '#4f46e5', fontWeight: '700' }}>
+                    {receiptModal.paymentMethod || 'UPI'}
+                  </div>
+                </div>
+                <div>
+                  <div className="item-label">NPCI / Bank Ref ID:</div>
+                  <div className="item-val" style={{ fontFamily: 'monospace', color: '#0f172a' }}>
+                    {receiptModal.transactionId || 'TXN-9840217'}
+                  </div>
+                </div>
+                <div>
+                  <div className="item-label">Payment Timestamp:</div>
+                  <div className="item-val">
+                    {receiptModal.paidAt
+                      ? new Date(receiptModal.paidAt).toLocaleString('en-IN')
+                      : new Date().toLocaleString('en-IN')}
+                  </div>
+                </div>
+              </div>
+
+              <div className="security-seal">
+                <Icons.Shield />
+                <span>Authorized Digital E-Receipt · Valid for University &amp; Hostel Treasury Audits</span>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button
+                className="btn btn-outline"
+                style={{ flex: 1 }}
+                onClick={() => window.print()}
+              >
+                <Icons.Receipt />
+                Print / Save Receipt
+              </button>
+              <button
+                className="btn btn-primary"
+                style={{ flex: 1 }}
+                onClick={() => setReceiptModal(null)}
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          ADMIN: ISSUE NEW BILL MODAL
+          ========================================================================= */}
+      {billModal && (
+        <div className="modal-backdrop">
+          <div className="modal-container">
+            <div className="modal-header">
+              <h3>
+                <Icons.Plus />
+                Issue Hostel Invoice
+              </h3>
+              <button className="modal-close-btn" onClick={() => setBillModal(false)}>
+                <Icons.X />
+              </button>
+            </div>
+
+            <form onSubmit={handleGenerateBill} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div className="form-group">
+                <label>Select Resident Student</label>
+                <select
+                  value={billForm.studentId}
+                  onChange={(e) => setBillForm({ ...billForm, studentId: e.target.value })}
+                  required
+                >
+                  <option value="">-- Choose Student --</option>
+                  {students.map((stu) => (
+                    <option key={stu.id} value={stu.id}>
+                      {stu.name} ({stu.email})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Invoice Title / Description</label>
+                <input
+                  placeholder="e.g. Monthly Room Rent - Nov 2026"
+                  value={billForm.billTitle}
+                  onChange={(e) => setBillForm({ ...billForm, billTitle: e.target.value })}
+                  required
+                />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div className="form-group">
+                  <label>Bill Category</label>
+                  <select
+                    value={billForm.billType}
+                    onChange={(e) => setBillForm({ ...billForm, billType: e.target.value })}
+                  >
+                    <option value="ROOM_RENT">Room Rent</option>
+                    <option value="MESS">Mess / Food Fee</option>
+                    <option value="MAINTENANCE">Maintenance &amp; Utilities</option>
+                    <option value="SECURITY_DEPOSIT">Security Deposit</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label>Amount in INR (₹)</label>
+                  <input
+                    type="number"
+                    min="1"
+                    placeholder="4500"
+                    value={billForm.amount}
+                    onChange={(e) => setBillForm({ ...billForm, amount: e.target.value })}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Payment Due Date</label>
+                <input
+                  type="date"
+                  value={billForm.dueDate}
+                  onChange={(e) => setBillForm({ ...billForm, dueDate: e.target.value })}
+                  required
+                />
+              </div>
+
+              <button className="btn btn-primary" type="submit" style={{ marginTop: '10px' }}>
+                <Icons.Plus />
+                Issue Invoice to Student
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 // --- ROUTING ---
 function ProtectedRoute({ children }) {
   return localStorage.getItem('token') ? <Layout>{children}</Layout> : <Navigate to="/login" />;
@@ -1555,6 +2916,7 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/rooms" element={<ProtectedRoute><Rooms /></ProtectedRoute>} />
+      <Route path="/payments" element={<ProtectedRoute><Payments /></ProtectedRoute>} />
       <Route path="/complaints" element={<ProtectedRoute><Complaints /></ProtectedRoute>} />
       <Route path="/leaves" element={<ProtectedRoute><LeaveRequests /></ProtectedRoute>} />
       <Route path="/notices" element={<ProtectedRoute><Notices /></ProtectedRoute>} />

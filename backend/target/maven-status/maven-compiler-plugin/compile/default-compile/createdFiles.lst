@@ -1,4 +1,5 @@
 com\hostel\hostelmanagement\entity\StudentLocation.class
+com\hostel\hostelmanagement\repository\PaymentRepository.class
 com\hostel\hostelmanagement\enums\ComplaintStatus.class
 com\hostel\hostelmanagement\repository\ComplaintRepository.class
 com\hostel\hostelmanagement\entity\User.class
@@ -13,6 +14,7 @@ com\hostel\hostelmanagement\enums\Role.class
 com\hostel\hostelmanagement\dto\AuthResponse.class
 com\hostel\hostelmanagement\enums\LeaveStatus.class
 com\hostel\hostelmanagement\controller\NoticeController.class
+com\hostel\hostelmanagement\dto\PaymentProcessRequest.class
 com\hostel\hostelmanagement\repository\NoticeRepository.class
 com\hostel\hostelmanagement\repository\RoomRepository.class
 com\hostel\hostelmanagement\controller\LocationController.class
@@ -24,13 +26,17 @@ com\hostel\hostelmanagement\HostelManagementApplication.class
 com\hostel\hostelmanagement\dto\LocationUpdateRequest.class
 com\hostel\hostelmanagement\entity\LeaveRequest.class
 com\hostel\hostelmanagement\config\DataInitializer.class
+com\hostel\hostelmanagement\enums\PaymentStatus.class
+com\hostel\hostelmanagement\controller\PaymentController.class
 com\hostel\hostelmanagement\controller\ComplaintController.class
 com\hostel\hostelmanagement\dto\RegisterRequest.class
 com\hostel\hostelmanagement\enums\RoomStatus.class
 com\hostel\hostelmanagement\repository\StudentLocationRepository.class
 com\hostel\hostelmanagement\controller\LeaveController.class
+com\hostel\hostelmanagement\entity\Payment.class
 com\hostel\hostelmanagement\dto\LoginRequest.class
 com\hostel\hostelmanagement\repository\LeaveRequestRepository.class
 com\hostel\hostelmanagement\dto\NoticeRequest.class
 com\hostel\hostelmanagement\controller\AuthController.class
 com\hostel\hostelmanagement\repository\UserRepository.class
+com\hostel\hostelmanagement\dto\GenerateBillRequest.class
